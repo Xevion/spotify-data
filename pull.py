@@ -2,6 +2,7 @@ import os
 import sys
 import auth
 import json
+import shutil
 import pprint
 import spotipy
 import logging
@@ -22,9 +23,12 @@ def main():
     sp = spotipy.Spotify(auth=token)
     logging.info('Authorized with Spotify via Spotipy')
 
+    logging.warning('Clearing all files in tracks folder for new files')
+    shutil.rmtree(os.path.join(sys.path[0], 'tracks'))
+    logging.info('Cleared folder, ready to download new track files')
+
     root = sys.path[0]
     curoffset, curlimit = 0, 50
-    # Start grabbing tracks (long running)
     while curoffset >= 0:
         logging.info('Requesting tracks {} to {}'.format(curoffset, curoffset + curlimit))
         response = sp.current_user_saved_tracks(limit=curlimit, offset=curoffset)
@@ -36,6 +40,6 @@ def main():
             json.dump(response, file)
         logging.info('Saved at "{}" ({}KB)'.format(f'\\tracks\\{filename}', round(os.path.getsize(filepath) / 1024, 2)))
         if received < curlimit:
-            logging.info('Done requesting/saving tracks after {} tracks.'.format(curoffset + received))
+            logging.info('Done requesting/saving tracks after {} tracks'.format(curoffset + received))
             break
         curoffset += curlimit
