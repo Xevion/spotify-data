@@ -1,3 +1,5 @@
+import os
+import sys
 import auth
 import json
 import pprint
@@ -17,18 +19,14 @@ def main():
     sp = spotipy.Spotify(auth=token)
     print('Authorized')
 
-    curoffset = 0
-    curlimit = 50
-    while True:
-
+    curoffset, curlimit = 0, 50
     # Start grabbing tracks (long running)
-    saved_response = sp.current_user_saved_tracks(limit=50, offset=850)
-    # saved_response = json.load(open('saved_tracks.json', 'r'))
-    # json.dump(saved_response, open('saved_tracks.json', 'w+'))
-    pprint.pprint(saved_response)
-
-    # for track in saved_response['items']:
-    #     print('{} by {}'.format(
-    #         track['track']['name'],
-    #         ' & '.join(artist['name'] for artist in track['track']['artists'])
-    #     ))
+    while True:
+        response = sp.current_user_saved_tracks(limit=curlimit, offset=curoffset)
+        if response is not None:
+            print('Received ')
+            filename = f'saved-tracks-{curoffset}-{curoffset + curlimit}.json'
+            filepath = os.path.join(root, 'tracks', filename)
+            with open(filepath, 'w+') as file:
+                json.dump(response, file)
+                curoffset += curlimit
