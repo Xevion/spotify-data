@@ -3,6 +3,7 @@ tracks/**
 cache_xevioni/**
 .cache-*
 auth.py
+export/**
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

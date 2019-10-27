@@ -13,7 +13,6 @@ import matplotlib.pyplot as plt
 def get_files():
     folder = os.path.join(sys.path[0], 'tracks')
     files = []
-    print(os.listdir(folder))
     for file in os.listdir(folder):
         with open(os.path.join(os.path.join(folder, file))) as file:
             files.append(
@@ -54,28 +53,34 @@ def process_data(data):
         explicit.append(item[1])
 
     # Done processing date properly, start plotting work
+    logging.info('Processed data, creating plot from data')
+    # Weird numpy stuff
     n = len(scores.values())
     ind = np.arange(n)
     width = 0.55
-
+    # Bars
     p1 = plt.bar(ind, explicit, width)
     p2 = plt.bar(ind, safe, width, bottom=explicit) # bottom= just has the bar sit on top of the explicit
-
+    # Plot labeling
     plt.title('Song by Safe/Explicit')
     plt.ylabel('Song Count')
     plt.xlabel('Month')
     plt.xticks(ind, months, rotation=270) # Rotation 90 will have the 
     plt.legend((p1[0], p2[0]), ('Explicit', 'Safe'))
-    logging.info('Showing plot to User')
-    plt.show()
-    
+    fig = plt.gcf() # Magic to save to image and then show
+
     # Save the figure, overwriting anything in your way
     logging.info('Saving the figure to the \'export\' folder')
     export_folder = os.path.join(sys.path[0], 'export')
     if not os.path.exists(export_folder):
         os.makedirs(export_folder)
-    plt.savefig(os.path.join(export_folder, datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S')))
+    plt.draw()
+    fig.savefig(os.path.join(export_folder, datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S')))
     
+    # Finally show the figure to 
+    logging.info('Showing plot to User')
+    plt.show()
+
     # Copy the figure to your clipboard to paste in Excel
     # logging.info('Copying the plot data to clipboard')
     # copy(months, safe, explicit)
@@ -100,5 +105,3 @@ def main():
     logging.info(f'File combined with {len(data)} items')
     logging.info('Processing file...')
     process_data(data)
-
-main()

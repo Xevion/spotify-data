@@ -11,8 +11,9 @@ def main():
     logging.basicConfig(level=logging.INFO)
     logging.info('Pulling data from Spotify')
     refresh()
+    process.main()
 
-    
+
 # Refreshes tracks from files if the token from Spotipy has expired,
 # thus keeping us up to date in most cases while keeping rate limits
 def refresh():
@@ -24,5 +25,5 @@ def refresh():
             pull.main()
         else:
             logging.info('Spotify data deemed to be recent enough (under {} seconds old)'.format(cache['expires_in']))
-
+    pull.main()
 main()
