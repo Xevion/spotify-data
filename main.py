@@ -7,6 +7,22 @@ import pull
 import process
 import logging
 
-cache = json.load(open(os.path.join(sys.path[0], f'.cache-{auth.username}')))
-if time.time() > cache['expires_at']:
-    pull.main()
+def main():
+    logging.basicConfig(level=logging.INFO)
+    logging.info('Pulling data from Spotify')
+    refresh()
+
+    
+# Refreshes tracks from files if the token from Spotipy has expired,
+# thus keeping us up to date in most cases while keeping rate limits
+def refresh():
+    file_path = os.path.join(sys.path[0], f'.cache-{auth.username}')
+    if os.path.exists(file_path):
+        cache = json.load(open(file_path, 'r'))
+        if time.time() > cache['expires_at']:
+            logging.info('Refreshing Spotify data by pulling tracks, this may take a moment.')
+            pull.main()
+        else:
+            logging.info('Spotify data deemed to be recent enough (under {} seconds old)'.format(cache['expires_in']))
+
+main()
