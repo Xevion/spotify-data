@@ -58,11 +58,13 @@ def process_data(data):
     n = len(scores.values())
     ind = np.arange(n)
     width = 0.55
-    # Bars
+    # Resizer figuresize to be 2.0 wider
+    plt.figure(figsize=(10.0, 6.0))    
+    # Stacked Bars
     p1 = plt.bar(ind, explicit, width)
     p2 = plt.bar(ind, safe, width, bottom=explicit) # bottom= just has the bar sit on top of the explicit
     # Plot labeling
-    plt.title('Song by Safe/Explicit')
+    plt.title('Song Count by Safe/Explicit')
     plt.ylabel('Song Count')
     plt.xlabel('Month')
     plt.xticks(ind, months, rotation=270) # Rotation 90 will have the 
@@ -74,8 +76,15 @@ def process_data(data):
     export_folder = os.path.join(sys.path[0], 'export')
     if not os.path.exists(export_folder):
         os.makedirs(export_folder)
-    plt.draw()
-    fig.savefig(os.path.join(export_folder, datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S')))
+    plt.tight_layout()
+    fig.savefig(
+        os.path.join(
+            export_folder,
+            datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S')
+        ),
+        dpi=100,
+        quality=95
+    )
     
     # Finally show the figure to 
     logging.info('Showing plot to User')
@@ -105,3 +114,5 @@ def main():
     logging.info(f'File combined with {len(data)} items')
     logging.info('Processing file...')
     process_data(data)
+
+main()
