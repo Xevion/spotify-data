@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import logging
+import datetime
 import collections
 import numpy as np
 import dateutil.parser
@@ -65,14 +66,25 @@ def process_data(data):
     plt.xlabel('Month')
     plt.xticks(ind, months, rotation=270) # Rotation 90 will have the 
     plt.legend((p1[0], p2[0]), ('Explicit', 'Safe'))
-    # plt.show()
-    copy(months, safe, explicit)
+    logging.info('Showing plot to User')
+    plt.show()
+    
+    # Save the figure, overwriting anything in your way
+    logging.info('Saving the figure to the \'export\' folder')
+    export_folder = os.path.join(sys.path[0], 'export')
+    if not os.path.exists(export_folder):
+        os.makedirs(export_folder)
+    plt.savefig(os.path.join(export_folder, datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S')))
+    
+    # Copy the figure to your clipboard to paste in Excel
+    # logging.info('Copying the plot data to clipboard')
+    # copy(months, safe, explicit)
 
 # Simple method for exporting data to a table like format
 # Will paste into Excel very easily
 def copy(months, safe, explicit):
     from pyperclip import copy
-    top = 'period\tsafe\texplicit\n'
+    top = 'Period\tSafe\tExplicit\n'
     copy(top + '\n'.join([
         f'{item[0]}\t{item[1]}\t{item[2]}' for item in zip(months, safe, explicit)
     ]))
