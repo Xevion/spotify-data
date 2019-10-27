@@ -1,17 +1,30 @@
 import os
 import sys
 import json
+import logging
 
 def get_files():
-    pass
+    folder = os.path.join(sys.path[0], 'tracks')
+    files = []
+    for file in os.listdir(folder):
+        with open(os.path.join(os.path.join(folder, file))) as file:
+            files.append(
+                json.load(file)
+            )
+    return files
 
-def process_track_file(data):
-    pass
+def combine_files(files):
+    items = []
+    for file in files:
+        items.extend(file['items'])
+    return items
 
 def main():
-    saved_response = json.load(open('saved_tracks.json', 'r'))
-    for track in saved_response['items']:
-        print('{} by {}'.format(
-            track['track']['name'],
-            ' & '.join(artist['name'] for artist in track['track']['artists'])
-        ))
+    logging.basicConfig(level=logging.INFO)
+    logging.info("Reading track files")
+    files = get_files()
+    logging.info(f"Read and parse {len(files)} track files")
+    logging.info("Combining into single track file for ease of access")
+    data = combine_files(files)
+    logging.info(f'File combined with {len(data)} items')
+main()
