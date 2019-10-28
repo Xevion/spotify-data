@@ -10,6 +10,8 @@ Yes, the project is super simple and doesn't have that much usefulness, but it's
 
 ![Output Matplotlib Stacked Bar-graph](./graph.png)
 
+---
+
 ```css
 > python main.py
 INFO:root:Pulling data from Spotify
