@@ -30,7 +30,45 @@ INFO:root:Saved at "\tracks\saved-tracks-100-150.json" (146K)
 INFO:root:Requesting 150 to 200
 INFO:root:Received 150 to 200
 INFO:root:Saved at "\tracks\saved-tracks-150-200.json" (147K)
-...............................................................
+INFO:root:Requesting 200 to 250
+INFO:root:Received 200 to 250
+INFO:root:Saved at "\tracks\saved-tracks-200-250.json" (146K)
+INFO:root:Requesting 250 to 300
+INFO:root:Received 250 to 300
+INFO:root:Saved at "\tracks\saved-tracks-250-300.json" (137K)
+INFO:root:Requesting 300 to 350
+INFO:root:Received 300 to 350
+INFO:root:Saved at "\tracks\saved-tracks-300-350.json" (140K)
+INFO:root:Requesting 350 to 400
+INFO:root:Received 350 to 400
+INFO:root:Saved at "\tracks\saved-tracks-350-400.json" (149K)
+INFO:root:Requesting 400 to 450
+INFO:root:Received 400 to 450
+INFO:root:Saved at "\tracks\saved-tracks-400-450.json" (140K)
+INFO:root:Requesting 450 to 500
+INFO:root:Received 450 to 500
+INFO:root:Saved at "\tracks\saved-tracks-450-500.json" (149K)
+INFO:root:Requesting 500 to 550
+INFO:root:Received 500 to 550
+INFO:root:Saved at "\tracks\saved-tracks-500-550.json" (137K)
+INFO:root:Requesting 550 to 600
+INFO:root:Received 550 to 600
+INFO:root:Saved at "\tracks\saved-tracks-550-600.json" (137K)
+INFO:root:Requesting 600 to 650
+INFO:root:Received 600 to 650
+INFO:root:Saved at "\tracks\saved-tracks-600-650.json" (135K)
+INFO:root:Requesting 650 to 700
+INFO:root:Received 650 to 700
+INFO:root:Saved at "\tracks\saved-tracks-650-700.json" (140K)
+INFO:root:Requesting 700 to 750
+INFO:root:Received 700 to 750
+INFO:root:Saved at "\tracks\saved-tracks-700-750.json" (134K)
+INFO:root:Requesting 750 to 800
+INFO:root:Received 750 to 800
+INFO:root:Saved at "\tracks\saved-tracks-750-800.json" (137K)
+INFO:root:Requesting 800 to 850
+INFO:root:Received 800 to 850
+INFO:root:Saved at "\tracks\saved-tracks-800-850.json" (132K)
 INFO:root:Requesting 850 to 900
 INFO:root:Received 850 to 900
 INFO:root:Saved at "\tracks\saved-tracks-850-900.json" (143K)
@@ -46,7 +84,6 @@ INFO:root:Processing file...
 INFO:root:Processed data, creating plot from data
 INFO:root:Saving the figure to the 'export' folder
 INFO:root:Showing plot to User
-INFO:root:Done
 >
 ```
 
