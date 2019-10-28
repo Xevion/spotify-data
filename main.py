@@ -27,4 +27,5 @@ def refresh():
             logging.info('Spotify data deemed to be recent enough (under {} seconds old)'.format(cache['expires_in']))
     else:
         pull.main()
+
 main()

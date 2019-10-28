@@ -104,7 +104,7 @@ def copy(months, safe, explicit):
     ]))
 
 def main():
-    logging.basicConfig(level=logging.INFO)
+    # logging.basicConfig(level=logging.INFO)
     logging.info("Reading track files")
     files = get_files()
     logging.info(f"Read and parse {len(files)} track files")
@@ -114,5 +114,3 @@ def main():
     logging.info(f'File combined with {len(data)} items')
     logging.info('Processing file...')
     process_data(data)
-
-main()

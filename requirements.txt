@@ -1,8 +1,8 @@
-hurry.filesize==0.9
-pyperclip==1.7.0
-numpy==1.17.3
-spotipy==2.4.4
-matplotlib==3.1.1
-Pillow==6.2.1
-python_dateutil==2.8.0
-hurry==1.1
+hurry.filesize
+pyperclip
+numpy
+spotipy
+matplotlib
+Pillow
+python_dateutil
+hurry
