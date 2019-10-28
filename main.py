@@ -13,14 +13,13 @@ def main():
     refresh()
     process.main()
 
-
 # Refreshes tracks from files if the token from Spotipy has expired,
 # thus keeping us up to date in most cases while keeping rate limits
 def refresh():
-    file_path = os.path.join(sys.path[0], f'.cache-{auth.username}')
+    file_path = os.path.join(sys.path[0], f'.cache-{auth.USERNAME}')
     if os.path.exists(file_path):
         cache = json.load(open(file_path, 'r'))
-        if time.time() > cache['expires_at']:
+        if True or time.time() > cache['expires_at']:
             logging.info('Refreshing Spotify data by pulling tracks, this may take a moment.')
             pull.main()
         else:

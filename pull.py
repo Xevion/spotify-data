@@ -15,11 +15,11 @@ def main():
     logging.info('Authorizing with Spotify via Spotipy')
     logging.warning('May require User Interaction to authenticate properly!')
     token = util.prompt_for_user_token(
-        username=auth.username,
-        scope=auth.scope,
-        client_id=auth.client_id,
-        client_secret=auth.client_secret,
-        redirect_uri=auth.redirect_uri
+        username=auth.USERNAME,
+        scope=auth.SCOPE,
+        client_id=auth.CLIENT_ID,
+        client_secret=auth.CLIENT_SECRET,
+        redirect_uri=auth.REDIRECT_URI
     )
     sp = spotipy.Spotify(auth=token)
     logging.info('Authorized with Spotify via Spotipy')
