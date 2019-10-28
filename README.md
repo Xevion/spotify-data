@@ -1,8 +1,8 @@
-# spotify-data
+# spotify-explicit
 
 ## About
 
-The purpose of this repository/project is to capture my liked songs from my Spotify account, and then create a stacked bar graph representing my explicit vs non explicit songs.
+The purpose of this repository/project is to capture my liked songs from my Spotify account, and then create a stacked bar graph representing my explicit vs "clean" songs.
 
 Yes, the project is super simple and doesn't have that much usefulness, but it's the first time I've genuinely used `matplotlib` or `logger` in a serious context and it was definitely interesting.
 
