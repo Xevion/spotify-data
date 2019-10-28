@@ -1,6 +1,6 @@
 import logging, sys, os, json
 
-# Open the file and get keys
+# Path to API Credentials file
 PATH = os.path.join(sys.path[0], 'auth.json')
 
 # Ensure the file exists, if not, generate one and error with a reason
@@ -22,6 +22,8 @@ if not os.path.exists(PATH):
         logging.critical("No \'auth.json\' file detected, one has been created for you")
         logging.critical("Please fill out with your Spotify credentials, and then restart the program")
         sys.exit()
+
+# Open and parse file
 FILE = json.load(open(PATH, 'r'))
 
 # Load all configuration variables
