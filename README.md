@@ -83,11 +83,7 @@ INFO:root:File combined with 919 items
 INFO:root:Processing file...
 INFO:root:Processed data, creating plot from data
 INFO:root:Saving the figure to the 'export' folder
-<<<<<<< HEAD
 INFO:root:Showing plot to User
-=======
-INFO:root:Showing plot to Use
->>>>>>> 37ac842551e60a52921445de2293691a9168e38a
 >
 ```
 
