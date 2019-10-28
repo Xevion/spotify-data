@@ -37,7 +37,7 @@ def print_data(data):
         print('[{}] {} "{}" by {}'.format(date, explicit, track_name, artists))
 
 def process_data(data):
-    # Process the data by Month/Year, then by Safe/Explicit
+    # Process the data by Month/Year, then by Clean/Explicit
     scores = {}
     for item in data:
         date = dateutil.parser.parse(item['added_at']).strftime('%b %Y')
@@ -47,9 +47,9 @@ def process_data(data):
     
     # Create simplified arrays for each piece of data
     months = list(scores.keys())[::-1]
-    safe, explicit = [], []
+    clean, explicit = [], []
     for item in list(scores.values())[::-1]:
-        safe.append(item[0])
+        clean.append(item[0])
         explicit.append(item[1])
 
     # Done processing date properly, start plotting work
@@ -62,13 +62,13 @@ def process_data(data):
     plt.figure(figsize=(10.0, 6.0))    
     # Stacked Bars
     p1 = plt.bar(ind, explicit, width)
-    p2 = plt.bar(ind, safe, width, bottom=explicit) # bottom= just has the bar sit on top of the explicit
+    p2 = plt.bar(ind, clean, width, bottom=explicit) # bottom= just has the bar sit on top of the explicit
     # Plot labeling
-    plt.title('Song Count by Safe/Explicit')
+    plt.title('Song Count by Clean/Explicit')
     plt.ylabel('Song Count')
     plt.xlabel('Month')
     plt.xticks(ind, months, rotation=270) # Rotation 90 will have the 
-    plt.legend((p1[0], p2[0]), ('Explicit', 'Safe'))
+    plt.legend((p1[0], p2[0]), ('Explicit', 'Clean'))
     fig = plt.gcf() # Magic to save to image and then show
 
     # Save the figure, overwriting anything in your way
@@ -92,15 +92,15 @@ def process_data(data):
 
     # Copy the figure to your clipboard to paste in Excel
     # logging.info('Copying the plot data to clipboard')
-    # copy(months, safe, explicit)
+    # copy(months, clean, explicit)
 
 # Simple method for exporting data to a table like format
 # Will paste into Excel very easily
-def copy(months, safe, explicit):
+def copy(months, clean, explicit):
     from pyperclip import copy
-    top = 'Period\tSafe\tExplicit\n'
+    top = 'Period\tClean\tExplicit\n'
     copy(top + '\n'.join([
-        f'{item[0]}\t{item[1]}\t{item[2]}' for item in zip(months, safe, explicit)
+        f'{item[0]}\t{item[1]}\t{item[2]}' for item in zip(months, clean, explicit)
     ]))
 
 def main():
